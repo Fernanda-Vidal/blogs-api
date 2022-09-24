@@ -4,8 +4,8 @@ const authenticate = async (req, res, next) => {
     try {
         const auth = await loginService.authenticate(req.body);
         req.user = auth;
-        console.log('token', typeof req.user);
-        return res.status(200).json();
+
+        return res.status(200).json(auth);
     } catch (err) {
         next(err);
     }

@@ -12,7 +12,7 @@ const authenticate = async ({ email, password }) => {
 
     const token = generateToken(user.dataValues);
 
-    return token;
+    return { token };
 };
 
 module.exports = {
