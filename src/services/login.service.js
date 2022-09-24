@@ -8,11 +8,13 @@ const authenticate = async ({ email, password }) => {
         where: { email, password },
     });
 
-    if (!user) throw errorGenerate('USER_NOT_FOUND');
+    if (!user) throw errorGenerate('Invalid fields', 400);
 
     const token = generateToken(user.dataValues);
 
-    return { token };
+    return token;
 };
 
-module.exports = authenticate;
+module.exports = {
+    authenticate,
+};
