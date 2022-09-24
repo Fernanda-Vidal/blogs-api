@@ -1,5 +1,5 @@
 const errorGenerate = require('../utils/errorGenerate');
-const schemaLogin = require('../utils/schemaLogin');
+const { schemaLogin } = require('../utils/schema');
 
 const validateLoginMiddleware = async (req, res, next) => {
     const { email, password } = req.body;
