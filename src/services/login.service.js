@@ -1,6 +1,6 @@
 const { User } = require('../models');
 const errorGenerate = require('../utils/errorGenerate');
-const generateToken = require('../utils/tokenGenerate');
+const { generateToken } = require('../utils/token');
 
 const authenticate = async ({ email, password }) => {
     const user = await User.findOne({
