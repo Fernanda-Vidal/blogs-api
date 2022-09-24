@@ -15,6 +15,12 @@ const addUser = async ({ displayName, email, password, image }) => {
     return { token };
 };
 
+const getAllUsers = async () => {
+    const users = await User.findAll();
+    return users;
+};
+
 module.exports = {
     addUser,
+    getAllUsers,
 };
