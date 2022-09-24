@@ -2,8 +2,10 @@ const userService = require('../services/user.service');
 
 const addUser = async (req, res, next) => {
     try {
-        const newUser = userService.addUser(req.body);
-        return res.status(200).json({ messsage: newUser });
+        const auth = await userService.addUser(req.body);
+
+        req.user = auth;
+        return res.status(201).json(auth);
     } catch (err) {
         next(err);
     }
