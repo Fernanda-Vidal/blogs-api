@@ -1,10 +1,10 @@
 const { User } = require('../models');
 const errorGenerate = require('../utils/errorGenerate');
-const generateToken = require('../utils/token');
+const { generateToken } = require('../utils/token');
 
 const addUser = async ({ displayName, email, password, image }) => {
     const userExist = await User.findOne({ where: { email } });
-
+    console.log(userExist);
     if (userExist !== null) throw errorGenerate('User already registered', 409);
 
     const user = await User.create(
@@ -16,8 +16,11 @@ const addUser = async ({ displayName, email, password, image }) => {
 };
 
 const getAllUsers = async () => {
-    const users = await User.findAll();
-    return users;
+        const users = await User.findAll({ 
+            attributes: ['id', 'displayName', 'email', 'image'],
+        });
+        console.log('UsersService', users);
+        return users;
 };
 
 module.exports = {

@@ -1,7 +1,7 @@
 const errorGenerate = require('../utils/errorGenerate');
 const { authenticateToken } = require('../utils/token');
 
-const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, _res, next) => {
     const { token } = req.headers;
 
     try {
