@@ -19,7 +19,7 @@ const getAllUsers = async () => {
         const users = await User.findAll({ 
             attributes: ['id', 'displayName', 'email', 'image'],
         });
-        console.log('UsersService', users);
+        // console.log('UsersService', users);
         return users;
 };
 

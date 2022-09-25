@@ -18,13 +18,15 @@ const generateToken = ({ id, displayName }) => {
 };
 
 const authenticateToken = async (token) => {
-    if (!token) throw errorGenerate('Token not found', 401);
+    // if (!token) throw errorGenerate('Token not found', 401);
+    // console.log('jwt, token exist? ', token);
 
     try {
         const validateToken = jwt.verify(token, TOKEN_SECRET);
         return validateToken;
     } catch (err) {
-        throw errorGenerate('Expired or invalid token', 401);
+        console.log('JWT ERROR', err);
+        return false;
     }
 };
 

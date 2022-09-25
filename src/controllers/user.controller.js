@@ -5,7 +5,7 @@ const addUser = async (req, res, next) => {
         const auth = await userService.addUser(req.body);
 
         req.user = auth;
-        return res.status(201).json(auth);
+        return res.status(200).json(auth);
     } catch (err) {
         next(err);
     }
