@@ -13,8 +13,6 @@ const authMiddleware = async (req, res, next) => {
 
  req.user = userAuth;
  next();
- //  console.log('middleware Auth Token', req.header('Token'));
-
 };
 
 module.exports = authMiddleware;
