@@ -6,5 +6,6 @@ const validateCategoryMiddleware = require('../middlewares/validateCategoryMiddl
 const routers = Router();
 
 routers.post('/', authMiddleware, validateCategoryMiddleware, postController.createPost);
+routers.get('/', authMiddleware, postController.getBlogPosts);
 
 module.exports = routers;
