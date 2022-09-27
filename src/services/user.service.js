@@ -27,12 +27,15 @@ const getAllUsers = async () => {
             attributes: ['id', 'displayName', 'email', 'image'],
         });
         
-    if (user === null) throw errorGenerate('User does not exist', 404);
+    if (user === null) throw errorGenerate('User does not exist', 401);
     return user;
 };
+
+const deleteMe = async (id) => User.destroy({ where: { id } });
 
 module.exports = {
     addUser,
     getAllUsers,
     getUserById,
+    deleteMe,
 };
