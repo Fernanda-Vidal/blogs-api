@@ -6,6 +6,7 @@ const validateCategoryMiddleware = require('../middlewares/validateCategoryMiddl
 
 const routers = Router();
 
+routers.get('/search', authMiddleware, postController.getSearchPost);
 routers.post('/', authMiddleware, validateCategoryMiddleware, postController.createPost);
 routers.put('/:id', authMiddleware, updateMiddleware, postController.updatePost);
 routers.get('/:id', authMiddleware, postController.getPostById);
