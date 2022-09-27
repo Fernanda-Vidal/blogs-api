@@ -18,8 +18,14 @@ const schemaPost = Joi.object({
     categoryIds: Joi.array().items(Joi.number()),
 });
 
+const schemaUpdate = Joi.object({
+    title: Joi.string().min(5).required(),
+    content: Joi.string().min(10).required(),
+});
+
 module.exports = {
     schemaLogin,
     schemaUser,
     schemaPost,
+    schemaUpdate,
 };

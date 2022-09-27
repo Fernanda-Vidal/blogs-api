@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { BlogPost, Category, PostCategory, User, sequelize } = require('../models');
 const errorGenerate = require('../utils/errorGenerate');
 
@@ -48,13 +49,26 @@ const getPostById = async (id) => {
     return post;
 };
 
-const updatePost = async (id, { title, content }) => {
-    const [qtdUpdated] = await BlogPost.update(
+const updatePost = async (id, userId, { title, content }) => {
+    const [isUpdated] = await BlogPost.update(
         { title, content, updated: new Date() },
-        { where: { id } },
+        { where: {
+            [Op.and]: [{ id }, { userId }],
+        } },
     );
+    
+    if (isUpdated <= 0) throw errorGenerate('Unauthorized user', 401);
+    
+    const updatedPost = await BlogPost.findByPk(id, {
+        include: [{
+            model: User, as: 'user', attributes: { exclude: ['password'] },
+        },
+        { 
+            model: Category, as: 'categories', through: { attributes: [] },
+        }],
+    });
 
-    return qtdUpdated > 0;
+    return updatedPost;
 };
 
 module.exports = {
