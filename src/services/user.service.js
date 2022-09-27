@@ -27,7 +27,7 @@ const getAllUsers = async () => {
             attributes: ['id', 'displayName', 'email', 'image'],
         });
         
-    if (user === null) throw errorGenerate('User does not exist', 401);
+    if (user === null) throw errorGenerate('User does not exist', 404);
     return user;
 };
 

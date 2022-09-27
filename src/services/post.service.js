@@ -88,8 +88,10 @@ const getSearchPost = async (q) => {
     const post = await BlogPost.findAll(
         { where: { [Op.or]: [
             { title: { [Op.like]: `%${q}%` } }, 
-            { content: { [Op.like]: `%${q}%` } }] },
-            include: [{ model: User, as: 'user', attributes: { exclude: ['password'] } },
+            { content: { [Op.like]: `%${q}%` } },
+        ] },
+         include: [
+            { model: User, as: 'user', attributes: { exclude: ['password'] } },
             { model: Category, as: 'categories', through: { attributes: [] } }],
         },
 );
